@@ -1,9 +1,8 @@
 const express = require('express');
-const fs = require('fs').promises;
-const path = require('path');
 
 const loginPost = require('./routes/loginPost');
 const talkerGet = require('./routes/talkerGet');
+const talkerGetById = require('./routes/talkerGetById');
 
 const app = express();
 app.use(express.json());
@@ -18,26 +17,7 @@ app.get('/', (_request, response) => {
 
 app.get('/talker', talkerGet);
 
-app.get('/talker/:id', async (req, res) => {
-  const { id } = req.params;
-  const data = await fs.readFile(path.join(__dirname, 'talker.json'), 'utf8');
-  const talker = JSON.parse(data);
-
-  if (!talker) {
-    res.status(200);
-    res.send([]);
-  }
-
-  const talkerById = talker.find((t) => t.id === Number(id));
-
-  if (!talkerById) {
-    res.status(404);
-    res.send({ message: 'Pessoa palestrante não encontrada' });
-  }
-
-  res.status(200);
-  res.send(talkerById);
-});
+app.get('/talker/:id', talkerGetById); 
 
 app.post('/login', loginPost);
 
