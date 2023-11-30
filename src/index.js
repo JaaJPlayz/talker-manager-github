@@ -2,6 +2,8 @@ const express = require('express');
 const fs = require('fs').promises;
 const path = require('path');
 
+const generateToken = require('./helpers/tokenGenerator');
+
 const app = express();
 app.use(express.json());
 
@@ -45,6 +47,14 @@ app.get('/talker/:id', async (req, res) => {
 
   res.status(200);
   res.send(talkerById);
+});
+
+app.post('/login', (_req, res) => {
+  // const { email, password } = req.body;
+
+  const randomToken = generateToken();
+
+  return res.status(200).json({ token: randomToken });
 });
 
 app.listen(PORT, () => {
