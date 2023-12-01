@@ -12,6 +12,7 @@ const watchedAtValidator = require('./helpers/watchedAtValidator');
 const { rateValidatorI, rateValidatorII } = require('./helpers/rateValidator');
 const registrateUser = require('./helpers/registrateUser');
 const updateUser = require('./helpers/updateUser');
+const talkerDeleteById = require('./helpers/talkerDeleteById');
 
 const app = express();
 app.use(express.json());
@@ -49,6 +50,8 @@ app.post('/talker',
   rateValidatorI,
   rateValidatorII,
   registrateUser);
+
+app.delete('/talker/:id', autenticationValidator, talkerDeleteById);
 
 app.listen(PORT, () => {
   console.log('Online');
