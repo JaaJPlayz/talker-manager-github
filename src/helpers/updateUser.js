@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const updateUser = async (req, res) => {
+const updateUser = async (req, res, next) => {
   const { id } = req.params;
   const { name, age, talk } = req.body;
   const talkerFile = path.join(__dirname, '..', './talker.json');
@@ -18,7 +18,8 @@ const updateUser = async (req, res) => {
     talk,
   };
   await fs.writeFile(talkerFile, JSON.stringify(talker, null, 2));
-  return res.status(200).json({ id: Number(id), name, age, talk: talker[talkerIdx].talk });
+  res.status(200).json({ id: Number(id), name, age, talk: talker[talkerIdx].talk });
+  return next();
 };
 
 module.exports = updateUser;
