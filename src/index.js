@@ -11,6 +11,7 @@ const talkValidator = require('./helpers/talkValidator');
 const watchedAtValidator = require('./helpers/watchedAtValidator');
 const { rateValidatorI, rateValidatorII } = require('./helpers/rateValidator');
 const registrateUser = require('./helpers/registrateUser');
+const updateUser = require('./helpers/updateUser');
 
 const app = express();
 app.use(express.json());
@@ -38,6 +39,17 @@ app.post('/talker',
   rateValidatorI,
   rateValidatorII,
   registrateUser);
+
+app.put('/talker/:id',
+  autenticationValidator,
+  nameValidator,
+  ageValidator,
+  talkValidator,
+  watchedAtValidator,
+  rateValidatorI,
+  rateValidatorII,
+  registrateUser,
+  updateUser);
 
 app.listen(PORT, () => {
   console.log('Online');

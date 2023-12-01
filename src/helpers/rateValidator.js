@@ -1,6 +1,5 @@
 const rateValidatorI = async (req, res, next) => {
   const { talk } = req.body;
-  console.log(talk);
   
   if (talk.rate === undefined || talk.rate === '') {
     return res.status(400).json({ message: 'O campo "rate" é obrigatório' });
