@@ -24,6 +24,16 @@ app.get('/', (_request, response) => {
   response.status(HTTP_OK_STATUS).send();
 });
 
+app.put('/talker/:id',
+  autenticationValidator,
+  nameValidator,
+  ageValidator,
+  talkValidator,
+  watchedAtValidator,
+  rateValidatorI,
+  rateValidatorII,
+  updateUser);
+
 app.get('/talker', talkerGet);
 
 app.get('/talker/:id', talkerGetById); 
@@ -39,17 +49,6 @@ app.post('/talker',
   rateValidatorI,
   rateValidatorII,
   registrateUser);
-
-app.put('/talker/:id',
-  autenticationValidator,
-  nameValidator,
-  ageValidator,
-  talkValidator,
-  watchedAtValidator,
-  rateValidatorI,
-  rateValidatorII,
-  registrateUser,
-  updateUser);
 
 app.listen(PORT, () => {
   console.log('Online');

@@ -8,8 +8,8 @@ const updateUser = async (req, res) => {
   const data = await fs.readFile(talkerFile, 'utf8');
   const talker = JSON.parse(data);
   const talkerIdx = talker.findIndex((t) => t.id === Number(id));
-  if (talkerIdx === -1) {
-    return res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
+  if (talkerIdx === -1) { 
+    return res.status(404).json({ message: 'Pessoa palestrante não encontrada' }); 
   }
   talker[talkerIdx] = {
     id: Number(id),
@@ -18,8 +18,7 @@ const updateUser = async (req, res) => {
     talk,
   };
   await fs.writeFile(talkerFile, JSON.stringify(talker, null, 2));
-  res.status(200).json({ id: Number(id), name, age, talk: talker[talkerIdx].talk });
-  return res.status(200).json(talker);
+  return res.status(200).json({ id: Number(id), name, age, talk: talker[talkerIdx].talk });
 };
 
 module.exports = updateUser;
