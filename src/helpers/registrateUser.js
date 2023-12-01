@@ -6,8 +6,6 @@ const registrateUser = async (req, res) => {
   const talkerFile = path.resolve(__dirname, '..', './talker.json');
   const talker = JSON.parse(await fs.readFile(talkerFile));
 
-  console.log("puts, ENTREI NO POST");
-
   const newTalker = {
     id: talker.length + 1,
     name,
