@@ -1,6 +1,3 @@
-Sure! Here’s the README with some emojis added for a more engaging look:
-
-```markdown
 # Talker Manager 🎤
 
 ## Description
@@ -94,6 +91,3 @@ If you want to contribute to this project, please fork the repository and create
 ## License
 
 This project is licensed under the MIT License. 📄
-```
-
-Feel free to adjust any emojis to better suit your style!
